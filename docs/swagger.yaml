@@ -1,0 +1,64 @@
+definitions:
+  controllers.PostResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/controllers.Posts'
+        type: array
+      message:
+        type: string
+      success:
+        example: true
+        type: boolean
+    type: object
+  controllers.Posts:
+    properties:
+      category:
+        example: A
+        type: string
+      created_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+      description:
+        example: A
+        type: string
+      name:
+        example: A
+        type: string
+      updated_at:
+        example: "2019-11-09T21:21:46+00:00"
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /posts:
+    get:
+      consumes:
+      - application/json
+      description: get string by ID
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/controllers.PostResponse'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Show an account
+      tags:
+      - accounts
+swagger: "2.0"
